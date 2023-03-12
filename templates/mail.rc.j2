@@ -1,0 +1,6 @@
+# {{ ansible_managed }}
+
+set v15-compat
+set smtp=smtp://{{ inventory.mail.username | my_urlencode }}:{{ inventory.mail.password | my_urlencode }}@{{ inventory.mail.host }}:{{ inventory.mail.port }}
+set smtp-auth=plain
+set from="{{ inventory.mail.from }} ({{ inventory.mail.from }})"

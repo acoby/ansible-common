@@ -1,0 +1,17 @@
+---
+- name: "Configure JournalD"
+  become: true
+  ansible.builtin.lineinfile:
+    dest: "/etc/systemd/journald.conf"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - regexp: "^SystemMaxUse="
+      line: "SystemMaxUse=100M"
+    - regexp: "^SystemMaxFileSize="
+      line: "SystemMaxFileSize=100M"
+    - regexp: "^Compress="
+      line: "Compress=yes"
+  notify: "Restart Journald"
+  tags:
+    - journald

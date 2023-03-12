@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  role_name: acoby.common
+  author: Thoralf Rickert-Wendt
+  description: A common role for all system
+  company: Acoby GmbH
+  license: MIT
+  min_ansible_version: "2.12"
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+  galaxy_tags:
+    - cloud
+    - development
+    - system

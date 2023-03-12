@@ -1,0 +1,45 @@
+---
+- name: "Install Common Necessary Debian Packages"
+  ansible.builtin.include_tasks: packages.yml
+  args:
+    apply:
+      become: true
+      tags:
+        - common
+  tags:
+    - common
+
+- name: "Configure root User"
+  ansible.builtin.include_tasks: root.yml
+  args:
+    apply:
+      become: true
+      tags:
+        - common
+  tags:
+    - common
+
+- name: "Configure Users"
+  ansible.builtin.include_tasks: users.yml
+  args:
+    apply:
+      become: true
+      tags:
+        - common
+  when: "owner is defined and owner.users is defined"
+  loop: "{{ owner.users | default([]) }}"
+  loop_control:
+    loop_var: user
+    label: "{{ user.username }}"
+  tags:
+    - common
+
+- name: "Install Journald"
+  ansible.builtin.include_tasks: journald.yml
+  args:
+    apply:
+      become: true
+      tags:
+        - common
+  tags:
+    - common
