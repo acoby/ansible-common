@@ -23,4 +23,5 @@ common_apt_packages:
   - python3-ldap
   - jq
 common_pip_packages:
-  - pipdate
+  - "pyOpenSSL"
+  - "setuptools"
