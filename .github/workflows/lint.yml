@@ -29,4 +29,4 @@ jobs:
         # requirements: requirements.yml
         options: |
           --inventory inventory.yml
-          ----syntax-check
+          --syntax-check
