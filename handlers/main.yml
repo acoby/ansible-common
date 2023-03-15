@@ -2,5 +2,5 @@
 - name: "Restart Journald"
   become: true
   ansible.builtin.service:
-    name: systemd-journald
-    state: restarted
+    name: "systemd-journald"
+    state: "restarted"

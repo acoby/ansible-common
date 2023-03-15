@@ -1,14 +1,15 @@
 # Manage root user account
 ---
 - name: "Update root User's Password"
-  become: true
   ansible.builtin.user:
     name: "root"
     password: "{{ inventory.root_password }}"
   no_log: true
+  when:
+    - "inventory is defined"
+    - "inventory.root_password is defined"
 
 - name: "Set up root Users authorized keys"
-  become: true
   ansible.posix.authorized_key:
     user: root
     state: present
@@ -21,7 +22,6 @@
   no_log: true
 
 - name: "Configure Files"
-  become: true
   ansible.builtin.copy:
     src: "{{ file.source }}"
     dest: "{{ file.destination }}"
@@ -37,7 +37,6 @@
     loop_var: file
 
 - name: "Configure MTA"
-  become: true
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"

@@ -1,0 +1,32 @@
+name: "Build & Test"
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: "Ansible and YAML Lint"
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: "Checkout repository"
+      uses: actions/checkout@v3
+
+    - name: "Run ansible lint"
+      uses: ansible/ansible-lint-action@main
+
+    - name: "Run yaml lint"
+      uses: ibiqlik/action-yamllint@v3
+      with:
+        config_file: .yamllint
+
+    - name: "Run playbook syntaxcheck"
+      uses: dawidd6/action-ansible-playbook@v2
+      with:
+        playbook: test.yml
+        directory: ./
+        # requirements: requirements.yml
+        options: |
+          --inventory inventory.yml
+          ----syntax-check

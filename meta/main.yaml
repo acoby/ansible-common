@@ -1,6 +1,7 @@
 ---
 galaxy_info:
-  role_name: acoby.common
+  namespace: acoby
+  role_name: common
   author: Thoralf Rickert-Wendt
   description: A common role for all system
   company: Acoby GmbH
