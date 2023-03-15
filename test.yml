@@ -1,7 +1,5 @@
 ---
 - name: "Apply Common Role"
   hosts: "all"
-  tasks:
-    - name: "Include acoby.common"
-      ansible.builtin.include_role:
-        name: "acoby.common"
+  roles:
+    - "acoby.common"
