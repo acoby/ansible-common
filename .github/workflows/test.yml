@@ -1,5 +1,5 @@
 ---
-name: "Molecule Test"
+name: "Lint & Test"
 
 on:
   push:
@@ -10,11 +10,19 @@ on:
 
 jobs:
   molecule:
-    name: "Run Molecule Tests"
+    name: "Run Lint and Molecule Tests"
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout repository"
         uses: actions/checkout@v3
+
+      - name: "Run ansible lint"
+        uses: ansible/ansible-lint-action@main
+
+      - name: "Run yaml lint"
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          config_file: .yamllint
 
       - name: "Run Molecule Test"
         uses: gofrolist/molecule-action@v2
