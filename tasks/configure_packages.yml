@@ -21,21 +21,18 @@
   ansible.builtin.pip:
     name: "{{ common_pip_packages }}"
     state: "present"
-
-- name: "debug"
-  ansible.builtin.debug:
-    msg: "{{ molecule_test }}"
+  when:
+    - "common_pip_packages | length > 0"
 
 - name: "Get current systemd default"
   ansible.builtin.command:  # noqa command-instead-of-module
     cmd: "systemctl get-default"
   changed_when: false
   register: systemdefault
-  when: "not molecule_test | bool"
 
 - name: "Set default to multi-user target"
   ansible.builtin.command:  # noqa command-instead-of-module
     cmd: "systemctl set-default multi-user.target"
+  changed_when: true
   when:
     - "'multi-user' not in systemdefault.stdout"
-    - "not molecule_test | bool"

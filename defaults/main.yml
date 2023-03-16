@@ -32,4 +32,3 @@ inventory:
     username: "postmaster"
     password: "password"
     from: "postmaster@localhost"
-molecule_test: false
