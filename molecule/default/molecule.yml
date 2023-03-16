@@ -7,6 +7,13 @@ platforms:
   - name: instance
     image: "docker.io/geerlingguy/docker-debian11-ansible"
     pre_build_image: true
+    privileged: true
+    command: "/lib/systemd/systemd"
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    tmpfs:
+      - "/run"
+      - "/tmp"
 provisioner:
   name: ansible
   lint:
