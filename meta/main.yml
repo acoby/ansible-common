@@ -1,4 +1,7 @@
 ---
+collections:
+  - acoby.collection
+
 galaxy_info:
   namespace: acoby
   role_name: common
