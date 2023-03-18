@@ -6,5 +6,5 @@
 ---
 collections:
   - name: https://$GITHUB_TOKEN@github.com/acoby/ansible-collection.git
-    type: git 
+    type: git
     version: main
